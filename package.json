@@ -1,0 +1,11 @@
+{
+  "name": "sydi-api",
+  "version": "1.0.0",
+  "description": "api of integrated data system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ing-Team",
+  "license": "ISC"
+}
