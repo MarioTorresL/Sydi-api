@@ -4,8 +4,13 @@
   "description": "api of integrated data system",
   "main": "index.js",
   "scripts": {
+    "start:dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ing-Team",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  }
 }
