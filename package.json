@@ -7,19 +7,22 @@
     "start:dev": "nodemon index.js",
     "sequelize db:migrate": "npx sequelize-cli db:migrate",
     "sequelize db:migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "sequelize db:run:seed":"npx sequelize-cli db:seed:all",
-    "sequelize db:seed":"npx sequelize-cli seed:generate",
-    "sequelize db:seed:undo":"npx sequelize-cli db:seed:undo",
+    "sequelize db:run:seed": "npx sequelize-cli db:seed:all",
+    "sequelize db:seed": "npx sequelize-cli seed:generate",
+    "sequelize db:seed:undo": "npx sequelize-cli db:seed:undo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ing-Team",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "morgan": "^1.10.0",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
+    "response-time": "^2.3.2",
     "sequelize": "^6.21.3"
   },
   "devDependencies": {
