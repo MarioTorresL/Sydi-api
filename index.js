@@ -1,3 +1,5 @@
+require('dotenv').config(); //get .env files
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser')
@@ -20,6 +22,6 @@ morgan('dev')
 responseTime()
 
 app.listen( process.env.PORT , ()=>{
-  console.log('Runing server in Port 3000')
+  console.log(`Runing server in Port ${process.env.PORT}`)
 });
 
