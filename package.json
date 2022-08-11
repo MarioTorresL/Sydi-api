@@ -8,7 +8,6 @@
     "sequelize db:migrate": "npx sequelize-cli db:migrate",
     "sequelize db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "sequelize db:run:seed": "npx sequelize-cli db:seed:all",
-    "sequelize db:seed": "npx sequelize-cli seed:generate",
     "sequelize db:seed:undo": "npx sequelize-cli db:seed:undo",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
