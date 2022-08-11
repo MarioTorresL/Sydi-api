@@ -11,12 +11,13 @@ module.exports = {
     return queryInterface.createTable('Roles',{
       id:{
         type:Sequelize.DataTypes.INTEGER,
-        autoIncremetn:true,
+        autoIncrement:true,
         primaryKey:true
       },
       name:{
         type:Sequelize.DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:true
       },
       createdAt: {
         allowNull: false,
