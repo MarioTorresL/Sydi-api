@@ -3,6 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const responseTime = require('response-time')
+require('dotenv').config();
+
 
 // create Express
 const app = express();
@@ -28,6 +30,7 @@ app.use('/api/roles', require('./src/routes/roles'));
 
 // appListen
 app.listen( process.env.PORT , ()=>{
-  console.log('Runing server in Port 3000')
+  //console.log('Runing server in Port 3000')
+  console.log(`Runing server in port ${process.env.PORT}`)
 });
 
