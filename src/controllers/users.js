@@ -36,7 +36,7 @@ const postUser = async (req, res) => {
       return res.status(400).json({ message: 'Role not found' })
     }
 
-    const hash = bcrypt.hashSync(password, 8);
+    const hash = bcrypt.hashSync(password);
 
     const user = await models.Users.create({ ...req.body, image: 'noImage', password:hash});
     
