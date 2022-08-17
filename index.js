@@ -25,6 +25,7 @@ responseTime()
 // ====routes====
 app.use('/api/users', require('./src/routes/users'));
 app.use('/api/roles', require('./src/routes/roles'));
+app.use('/api/auth', require('./src/routes/auth'));
 
 
 
