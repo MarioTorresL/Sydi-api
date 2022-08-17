@@ -9,7 +9,7 @@ const login = async(req,res)=>{
   try{
     const {email, password} = req.body;
     
-    const user = models.User.findOne({where:{email}})
+    const user = models.Users.findOne({where:{email}})
     
     //verify if user exist (response user or password invalid for security)
     if(!user){
@@ -36,15 +36,28 @@ const login = async(req,res)=>{
     })
 
   }catch(e){
-    
+    return res.status(500).json({
+      message:'Bad Request',
+      error: e
+    }) 
   }
 }
 
 const renewToken = async(req,res)=>{
   try{
+    const uid = req.uid
+    
+    const user = await models.Users.findByPk(uid);
+
+    const token = await generateJWT;
+
+    return res.json({message:'Renew Token', token, user})
 
   }catch(e){
-
+    return res.status(500).json({
+      message:'Bad Request',
+      error: e
+    })
   }
 } 
 
