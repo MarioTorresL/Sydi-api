@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     }
   }
-  Branchs.init({
+  UserCompanies.init({
     
   }, {
     sequelize,

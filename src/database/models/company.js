@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) =>{
   Companies.init({
     name: DataTypes.STRING,
     direction: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    rut: DataTypes.STRING
 
   }, {
     sequelize,
