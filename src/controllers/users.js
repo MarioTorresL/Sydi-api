@@ -4,13 +4,13 @@ const getUser = async (req, res) => {
   try {
     const users = await models.Users.findAll();
 
-    res.status(200).send({
+    res.status(200).json({
       message: 'Get all users',
       data: users
     })
 
   } catch (e) {
-    res.status(500).send({
+    res.status(500).json({
       message: 'Bad Request',
       error: e
     })
@@ -25,24 +25,24 @@ const postUser = async (req, res) => {
     const verifyUser = await models.Users.findOne({ where: { email: email } });
 
     if (verifyUser) {
-      return res.status(400).send({ message: 'User is registered' });
+      return res.status(400).json({ message: 'User is registered' });
     }
 
     const verifyRole = await models.Roles.findByPk(RoleId);
 
     if (!verifyRole) {
-      return res.status(400).send({ message: 'Role not found' })
+      return res.status(400).json({ message: 'Role not found' })
     }
 
     const user = await models.Users.create({ ...req.body, image: 'noImage' });
 
-    res.send({
+    res.json({
       message: 'User created',
-      data: user.toJSON()
+      data: user
     });
 
   } catch (e) {
-    res.status(500).send({
+    res.status(500).json({
       message: 'Bad request',
       error: e
     });
@@ -57,7 +57,7 @@ const putUser = async (req, res) => {
     const user = await models.Users.findByPk(id);
 
     if (!user) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: 'User not found'
       });
     }
@@ -65,20 +65,20 @@ const putUser = async (req, res) => {
     const verifyRole = await models.Roles.findByPk(RoleId);
 
     if (!verifyRole) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: 'Role not found'
       })
     }
 
     const updateUser = await user.update({ ...req.body })
 
-    res.status(200).send({
+    res.status(200).json({
       message: 'User update',
-      data: updateUser.toJSON()
+      data: updateUser
     })
 
   } catch (e) {
-    res.status(500).send({
+    res.status(500).json({
       message: 'Bad request',
       error: e
     })
@@ -94,20 +94,20 @@ const deleteUser = async (req, res) => {
     const user = await models.Users.findByPk(id);
 
     if (!user) {
-      return res.status(404).send({
+      return res.status(404).json({
         message: 'User not found'
       });
     }
 
     await user.destroy();
 
-    res.status(202).send({
+    res.status(202).json({
       message: 'User removed'
     });
 
   } catch (e) {
 
-    res.status(500).send({
+    res.status(500).json({
       message: 'Bad request',
       error: e
     });

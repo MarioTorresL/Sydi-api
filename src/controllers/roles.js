@@ -3,8 +3,8 @@ const models = require('../database/models')
 const getRole = async(req,res) => {
   try{
     const roles = await models.Roles.findAll();
-
-    res.status(200).send({
+    
+    res.status(200).json ({
       message:'Get all roles',
       data:roles
     })
@@ -23,18 +23,18 @@ const postRole = async (req,res) => {
     const verifyRole = await models.Roles.findOne({where:{name:name}});
 
     if(verifyRole){
-      return res.status(400).send({message:'name is registered'});
+      return res.status(400).json({message:'name is registered'});
     }
 
     const role = await models.Roles.create({name:name});
 
     res.send({
       message: 'Role created',
-      data:role.toJSON()
+      data:role
     });
 
   }catch(e){
-    res.status(500).send({
+    res.status(500).json({
       message:'Bad Request',
       error:e
     });
@@ -49,19 +49,19 @@ const putRole = async (req, res) => {
     const role = await models.Roles.findByPk(id);
 
     if(!role){
-      return res.status(404).send({
+      return res.status(404).json({
         message:'Role not found'
       });
     }
 
     const updateRole = await role.update(name);
 
-    res.status(200).send({
+    res.status(200).json({
       message: 'Role updated',
       data: updateRole.toJSON()
     })
   }catch(e){
-    res.status(500).send({
+    res.status(500).json({
       message:'Bad Request',
       error:e
     })
@@ -75,19 +75,19 @@ const deleteRole = async (req, res) => {
     const role = await models.Roles.findByPk(id);
 
     if(!role){
-      return res.status(404).send({
+      return res.status(404).json({
         message:'Role not found'
       });
     }
 
     await role.destroy();
 
-    res.status(202).send({
+    res.status(202).json({
       message:'Role removed'
     })
 
   }catch(e){
-    res.status(500).send({
+    res.status(500).json({
       message:'Bad Request',
       error:e
     })
