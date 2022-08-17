@@ -86,9 +86,7 @@ const putUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-  
   try {
-
     const id = req.params.id;
 
     const user = await models.Users.findByPk(id);
@@ -105,8 +103,7 @@ const deleteUser = async (req, res) => {
       message: 'User removed'
     });
 
-  } catch (e) {
-
+  }catch(e){
     res.status(500).json({
       message: 'Bad request',
       error: e
