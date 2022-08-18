@@ -3,7 +3,13 @@ const models = require('../database/models');
 
 const getBranch = async (req, res) => {
   try {
-    const branchs = await models.Branchs.findAll();
+    const branchs = await models.Branchs.findAll({
+      include:[{
+        model: models.Companies,
+        attributes: ['name']
+  
+      }]
+    });
 
     res.status(200).json({
       message: 'Get all users',
