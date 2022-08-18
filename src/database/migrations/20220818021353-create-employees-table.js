@@ -8,29 +8,48 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    return queryInterface.createTable("UserCompanies", {
+
+    return queryInterface.createTable("Employees", {
       id: {
         type: Sequelize.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      
-      UserId: {
+      firstName: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+
+      lastName: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      salary: {
         type: Sequelize.DataTypes.INTEGER,
-        allowNull:false,
+        allowNull: false,
+      },
+      rut: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        unique: true,
+      },
+      direction: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      phone: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+      },
+      BranchId: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
         references: {
-            model: "Users",
-            key: "id",
-          },
+          model: "Branchs",
+          key: "id",
         },
-        CompanyId: {
-          type: Sequelize.DataTypes.INTEGER,
-          allowNull:false,
-          references: {
-              model: "Companies",
-              key: "id",
-            },
-          },
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
@@ -53,6 +72,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    return queryInterface.dropTable("UserCompanies");
+    return queryInterface.dropTable("Employees");
   },
 };
