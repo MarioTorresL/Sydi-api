@@ -1,62 +1,61 @@
+const bcrypt = require("bcryptjs");
 
-const bcrypt = require('bcryptjs');
+const models = require("../database/models");
 
-const models = require('../database/models');
+const { generateJWT } = require("../helpers/jwt");
 
-const { generateJWT } = require('../helpers/jwt');
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-const login = async(req,res)=>{
-  try{
-    const {email, password} = req.body;
-    
-    const user = await models.Users.findOne({where:{email}})
+    const user = await models.Users.findOne({ where: { email } });
+
     //verify if user exist (response user or password invalid for security)
-    if(!user){
+    if (!user) {
       return res.status(404).json({
-        message:'User or password invalid'
-      })
+        message: "User or password invalid",
+      });
     }
 
     //validate with bcrypt
     const validPass = bcrypt.compareSync(password, user.password);
 
-    if(!validPass){
+    if (!validPass) {
       return res.status(400).json({
-        message:'User or password invalid'
-      })
+        message: "User or password invalid",
+      });
     }
+
     //token generate
-    const token = await generateJWT(user.id)
+    const token = await generateJWT(user.id);
 
     return res.json({
-      message:'Login ok', 
-      token:token
-    })
-
-  }catch(e){
+      message: "Login ok",
+      token: token,
+    });
+  } catch (e) {
     return res.status(500).json({
-      message:'Bad Request',
-      error: e
-    }) 
+      message: "Bad Request",
+      error: e,
+    });
   }
-}
+};
 
-const renewToken = async(req,res)=>{
-  try{
-    const uid = req.uid
-    
+const renewToken = async (req, res) => {
+  try {
+    const uid = req.uid;
+
     const user = await models.Users.findByPk(uid);
 
     const token = await generateJWT;
 
-    return res.json({message:'Renew Token', token, user})
-
-  }catch(e){
+    return res.json({ message: "Renew Token", token, user });
+  } catch (e) {
     return res.status(500).json({
-      message:'Bad Request',
-      error: e
-    })
+      message: "Bad Request",
+      error: e,
+    });
   }
-} 
+};
 
-module.exports = {login, renewToken}
+module.exports = { login, renewToken };
