@@ -4,9 +4,9 @@ const bcrypt = require('bcryptjs');
 
 const models = require('../database/models');
 
-const getUser = async (req, res) => {
+const getEmployee = async (req, res) => {
   try {
-    const users = await models.Users.findAll();
+    const users = await models.Employees.findAll();
 
     res.status(200).json({
       message: 'Get all users',
@@ -21,17 +21,17 @@ const getUser = async (req, res) => {
   }
 }
 
-const postUser = async (req, res) => {
+const postEmployee = async (req, res) => {
   try {
 
-    const { firstName, lastName, email, password, image, RoleId } = req.body;
+    const { firstName, lastName, salary, rut, phone, BranchId } = req.body;
 
-    const verifyUser = await models.Users.findOne({ where: { email: email } });
-    if (verifyUser) {
-      return res.status(400).json({ message: 'User is registered' });
+    const verifEmployee = await models.Users.findOne({ where: { name: firstName } });
+    if (verifEmployee) {
+      return res.status(400).json({ message: 'Employee is registered' });
     }
 
-    const verifyRole = await models.Roles.findByPk(RoleId);
+    const verifyBranch = await models.Branchs.findByPk(BranchId);
     if (!verifyRole) {
       return res.status(400).json({ message: 'Role not found' })
     }
@@ -56,31 +56,31 @@ const postUser = async (req, res) => {
   }
 }
 
-const putUser = async (req, res) => {
+const putEmployee = async (req, res) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, password, image, RoleId } = req.body;
+    const { firstName, lastName,salary,rut,direction,phone,BranchId } = req.body;
 
-    const user = await models.Users.findByPk(id);
+    const employee = await models.Employees.findByPk(id);
 
-    if (!user) {
+    if (!employee) {
       return res.status(404).json({
         message: 'User not found'
       });
     }
 
-    const verifyRole = await models.Roles.findByPk(Roleid);
+    const verifyBranch = await models.Branchs.findByPk(Roleid);
 
-    if (!verifyRole) {
+    if (!verifyBranch) {
       return res.status(404).json({
-        message: 'Role not found'
+        message: 'Branch not found'
       })
     }
 
     const updateUser = await user.update({ ...req.body })
 
     res.status(200).json({
-      message: 'User update',
+      message: 'Employee update',
       data: updateUser
     })
 
@@ -92,22 +92,22 @@ const putUser = async (req, res) => {
   }
 }
 
-const deleteUser = async (req, res) => {
+const deleteEmployee = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const user = await models.Users.findByPk(id);
+    const employee = await models.Employees.findByPk(id);
 
-    if (!user) {
+    if (!employee) {
       return res.status(404).json({
         message: 'User not found'
       });
     }
 
-    await user.destroy();
+    await employee.destroy();
 
     res.status(202).json({
-      message: 'User removed'
+      message: 'Employee removed'
     });
 
   }catch(e){
@@ -118,4 +118,4 @@ const deleteUser = async (req, res) => {
   }
 }
 
-module.exports = { getUser, postUser, putUser, deleteUser }
+module.exports = { getEmployee, postEmployee, putEmployee, deleteEmployee }

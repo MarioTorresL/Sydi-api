@@ -5,7 +5,7 @@ const { validateJwt } = require('../middlewares/validateJwt');
 
 // ===route: /api/users ===
 
-router.get('/', validateJwt, getUser);
+router.get('/',validateJwt, getUser);
 router.post('/', postUser);
 router.put('/:id', validateJwt, putUser);
 router.delete('/:id', validateJwt, deleteUser);

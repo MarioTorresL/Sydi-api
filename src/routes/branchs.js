@@ -1,12 +1,13 @@
 const router = require('express').Router();
 
-const { getBranch, postBranch, putBranch, deleteBranch } = require('../controllers/branchs')
+const { getBranch, postBranch, putBranch, deleteBranch } = require('../controllers/branchs');
+const { validateJwt } = require('../middlewares/validateJwt');
 
 // ===route: /api/branchs ===
 
-router.get('/', getBranch);
-router.post('/', postBranch);
-router.put('/:id', putBranch);
-router.delete('/:id', deleteBranch);
+router.get('/',validateJwt, getBranch);
+router.post('/',validateJwt, postBranch);
+router.put('/:id',validateJwt, putBranch);
+router.delete('/:id',validateJwt, deleteBranch);
 
 module.exports = router;

@@ -33,7 +33,7 @@ module.exports = {
       image:{
         type:Sequelize.DataTypes.BLOB
       },
-      roleId: {
+      RoleId: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
         references: {

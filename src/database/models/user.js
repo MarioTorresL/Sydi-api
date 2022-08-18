@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) =>{
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Users.belongsTo(models.Roles,{foreignKey: 'roleId'})
+      Users.belongsTo(models.Roles,{foreignKey: 'RoleId'})
       // define association here
     }
   }
