@@ -46,12 +46,17 @@ const getOneVehicle = async (req, res)=>{
 const postVehicle = async (req, res)=>{
   try{
 
-    const { licence_plate } = req.body;
+    const { licence_plate, BranchId } = req.body;
 
     const verifyVehicle = await models.Vehicles.findOne({ where:{ licence_plate } })
+    const verifyBranch = await models.Branches.findByPk(BranchId);
 
     if(verifyVehicle){
     return res.status(400).json({message:'Vehicle has already been registered'})
+    }
+
+    if(verifyBranch){
+      return res.status(404).json({message:'Branch not found'})
     }
 
     const vehicle = await models.Vehicles.create({...req.body})

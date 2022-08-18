@@ -14,23 +14,22 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      
       UserId: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull:false,
         references: {
             model: "Users",
             key: "id",
-          },
         },
-        CompanyId: {
-          type: Sequelize.DataTypes.INTEGER,
-          allowNull:false,
-          references: {
+      },
+      CompanyId: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull:false,
+        references: {
               model: "Companies",
               key: "id",
-            },
-          },
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,

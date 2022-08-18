@@ -31,6 +31,7 @@ const postEmployee = async (req, res) => {
   try {
     const { firstName, lastName, salary, rut, phone, BranchId } = req.body;
 
+    //----------------????????---------------------------
     const verifEmployee = await models.Users.findOne({
       where: { name: firstName },
     });
@@ -58,6 +59,7 @@ const postEmployee = async (req, res) => {
       message: "User created",
       token: token,
     });
+    // -------------------????????----------------
   } catch (e) {
     res.status(500).json({
       message: "Bad request",
@@ -80,6 +82,8 @@ const putEmployee = async (req, res) => {
       });
     }
 
+    //----------???????--------
+
     const verifyBranch = await models.Branchs.findByPk(Roleid);
 
     if (!verifyBranch) {
@@ -94,6 +98,8 @@ const putEmployee = async (req, res) => {
       message: "Employee update",
       data: updateUser,
     });
+
+    //--------????-----
   } catch (e) {
     res.status(500).json({
       message: "Bad request",
@@ -108,11 +114,14 @@ const deleteEmployee = async (req, res) => {
 
     const employee = await models.Employees.findByPk(id);
 
+    //--------??????------
+
     if (!employee) {
       return res.status(404).json({
         message: "User not found",
       });
     }
+    //--------?????-----
 
     await employee.destroy();
 

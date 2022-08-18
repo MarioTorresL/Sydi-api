@@ -25,12 +25,13 @@ const postCompany = async (req, res) => {
     if (verifyCompany) {
       return res.status(400).json({ message: "Company is registered" });
     }
-
+    //????????
     const verifyUser = await models.Users.findByPk(RoleId);
 
     if (!verifyUser) {
       return res.status(400).json({ message: "User not found" });
     }
+    /////?????
 
     const company = await models.Company.create({ ...req.body });
 
@@ -58,7 +59,7 @@ const putCompany = async (req, res) => {
         message: "User not found",
       });
     }
-
+    // ???????
     const verifyUser = await models.Users.findByPk(RoleId);
 
     if (!verifyUser) {
@@ -66,6 +67,7 @@ const putCompany = async (req, res) => {
         message: "User not found",
       });
     }
+    // ???????
 
     const updateCompany = await company.update({ ...req.body });
 

@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) =>{
     static associate(models) {
     
       // define association here
-      Branchs.belongsTo(models.Companies,{foreignKey:'companyId'})
-      Branchs.belongsTo(models.Vehicles,{foreignKey: 'vehicleId'})
+      Branchs.belongsTo(models.Companies,{foreignKey:'CompanyId'})
+      Branchs.belongsTo(models.Vehicles,{foreignKey: 'VehicleId'})
     }
   }
   Branchs.init({

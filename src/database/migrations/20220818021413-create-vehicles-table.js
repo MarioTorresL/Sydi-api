@@ -30,6 +30,14 @@ module.exports = {
       date:{
         type:Sequelize.DataTypes.DATE
       },
+      BranchId: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Branchs",
+          key: "id",
+        }
+      },
       createdAt:{
         allowNull: false,
         type: Sequelize.DataTypes.DATE

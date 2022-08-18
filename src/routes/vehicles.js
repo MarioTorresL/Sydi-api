@@ -4,6 +4,7 @@ const { getAllVehicle, getOneVehicle, postVehicle, putVehicle, deleteVehicle } =
 const { validateJwt } = require('../middlewares/validateJwt');
 
 //=== route: /api/vehicles ===
+//===TODOO====(add validatejwt to rutes)
 
 router.get('/', getAllVehicle );
 router.post('/', postVehicle);

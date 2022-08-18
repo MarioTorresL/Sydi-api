@@ -69,7 +69,7 @@ const putBranch = async (req, res) => {
       });
     }
 
-    const verifyCompany = await models.Companies.findByPk(RoleId);
+    const verifyCompany = await models.Companies.findByPk(CompanyId);
 
     if (!verifyCompany) {
       return res.status(404).json({

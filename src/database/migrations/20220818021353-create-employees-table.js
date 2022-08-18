@@ -19,7 +19,6 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
-
       lastName: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
@@ -49,7 +48,6 @@ module.exports = {
           key: "id",
         },
       },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
