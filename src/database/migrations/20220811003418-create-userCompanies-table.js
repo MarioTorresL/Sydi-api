@@ -15,7 +15,7 @@ module.exports = {
         primaryKey: true,
       },
       
-      userId: {
+      UserId: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull:false,
         references: {
@@ -23,7 +23,7 @@ module.exports = {
             key: "id",
           },
         },
-        companyId: {
+        CompanyId: {
           type: Sequelize.DataTypes.INTEGER,
           allowNull:false,
           references: {

@@ -41,6 +41,14 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
       },
+      BranchId: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Branchs",
+          key: "id",
+        },
+      },
 
       createdAt: {
         allowNull: false,
