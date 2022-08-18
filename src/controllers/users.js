@@ -24,14 +24,15 @@ const getUser = async (req, res) => {
 const postUser = async (req, res) => {
   try {
 
-    const { firstName, lastName, email, password, image, roleId } = req.body;
+    const { firstName, lastName, email, password, image, RoleId } = req.body;
 
+    console.log(req.body)
     const verifyUser = await models.Users.findOne({ where: { email: email } });
+
     if (verifyUser) {
       return res.status(400).json({ message: 'User is registered' });
     }
-
-    const verifyRole = await models.Roles.findByPk(roleId);
+    const verifyRole = await models.Roles.findByPk(RoleId);
     if (!verifyRole) {
       return res.status(400).json({ message: 'Role not found' })
     }
@@ -59,7 +60,7 @@ const postUser = async (req, res) => {
 const putUser = async (req, res) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, password, image, roleId } = req.body;
+    const { firstName, lastName, password, image, RoleId } = req.body;
 
     const user = await models.Users.findByPk(id);
 
@@ -69,7 +70,7 @@ const putUser = async (req, res) => {
       });
     }
 
-    const verifyRole = await models.Roles.findByPk(roleId);
+    const verifyRole = await models.Roles.findByPk(RoleId);
 
     if (!verifyRole) {
       return res.status(404).json({

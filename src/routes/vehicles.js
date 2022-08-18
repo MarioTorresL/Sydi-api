@@ -1,12 +1,14 @@
+const router = require('express').Router();
 
-const router = require('express').router();
-
-const {  } + require('../controllers/vehicles');
+const { getAllVehicle, getOneVehicle, postVehicle, putVehicle, deleteVehicle } = require('../controllers/vehicles');
 const { validateJwt } = require('../middlewares/validateJwt');
 
 //=== route: /api/vehicles ===
 
-router.get();
-router.post();
-router.put();
-router.delete();
+router.get('/', getAllVehicle );
+router.post('/', postVehicle);
+router.get('/:id', getOneVehicle);
+router.put('/:id', putVehicle);
+router.delete('/:id', deleteVehicle);
+
+module.exports = router;
