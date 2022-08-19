@@ -6,46 +6,40 @@ module.exports = {
      * Add seed commands here.
      *
      * Example:
-     * 
      * await queryInterface.bulkInsert('People', [{
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-     * 
-     */
-     return queryInterface.bulkInsert('Users',[
+    */
+
+     return queryInterface.bulkInsert('Companies',[
       {
-        firstName:'Matias',
-        lastName:'Lara',
-        email:'cuenta@gmail.com',
-        password:'112233##',
-        RoleId:3,
+        name:'Coca-Cola',
+        direction:'San Martín #45',
+        rut:2321,
+        status:'active',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        firstName:'Juan',
-        lastName:'Galaz',
-        email:'account@gmail.com',
-        password:'331133##',
-        RoleId:2,
+        name:'Amazon',
+        direction:'San Isidro #51',
+        rut: 23142412,
+        status:'active',
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      
       {
-        firstName:'marcela',
-        lastName:'araya',
-        email:'acnt@gmail.com',
-        password:'3da133##',
-        RoleId:1,
+        name:'Facebook',
+        direction:'Washington #412',
+        rut:1684,
+        status:'active',
         createdAt: new Date(),
         updatedAt: new Date()
       }
+          
       ])
     },
-  
-   
   
 
   async down (queryInterface, Sequelize) {
@@ -55,7 +49,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     return queryInterface.bulkDelete('Roles', null, {})
-
+     await queryInterface.bulkDelete('Companies', null, {});
   }
-}
+};
