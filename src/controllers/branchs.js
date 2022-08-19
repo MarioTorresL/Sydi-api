@@ -25,10 +25,10 @@ const getBranch = async (req, res) => {
 
 const postBranch = async (req, res) => {
   try {
-    const { CompanyId } = req.body;
+    const {name, CompanyId } = req.body;
 
     const verifyBranch = await models.Branchs.findOne({
-      where: { CompanyId: CompanyId },
+      where: { name: name },
     });
 
     if (verifyBranch) {
