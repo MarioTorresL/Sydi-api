@@ -30,7 +30,7 @@ const getUser = async (req, res) => {
 const postUser = async (req, res) => {
   try {
   
-    const { firstName, lastName, email, password, image, RoleId } = req.body;
+    const { email, image, RoleId } = req.body;
 
     console.log(req.body)
     const verifyUser = await models.Users.findOne({ where: { email: email } });
@@ -69,7 +69,6 @@ const postUser = async (req, res) => {
 const putUser = async (req, res) => {
   try {
     const id = req.params.id;
-    const { } = req.body;
 
     const user = await models.Users.findByPk(id);
 

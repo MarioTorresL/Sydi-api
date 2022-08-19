@@ -45,7 +45,6 @@ const postCompany = async (req, res) => {
 const putCompany = async (req, res) => {
   try {
     const id = req.params.id;
-    const { name } = req.body;
 
     const company = await models.Companies.findByPk(id);
 

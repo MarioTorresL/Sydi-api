@@ -6,7 +6,7 @@ const models = require("../database/models");
 
 const getEmployee = async (req, res) => {
   try {
-    const users = await models.Employees.findAll({
+    const employee = await models.Employees.findAll({
       include: [
         {
           model: models.Branchs,
@@ -17,7 +17,7 @@ const getEmployee = async (req, res) => {
 
     res.status(200).json({
       message: "Get all employees",
-      data: users,
+      data: employee,
     });
   } catch (e) {
     res.status(500).json({
@@ -29,12 +29,12 @@ const getEmployee = async (req, res) => {
 
 const postEmployee = async (req, res) => {
   try {
-    const {rut, BranchId } = req.body;
+    const { rut, BranchId } = req.body;
 
-    const verifEmployee = await models.Users.findOne({
+   const verifyEmployee = await models.Employees.findOne({
       where: { rut: rut },
     });
-    if (verifEmployee) {
+    if (verifyEmployee) {
       return res.status(400).json({ message: "Employee is registered" });
     }
 
@@ -43,8 +43,14 @@ const postEmployee = async (req, res) => {
       return res.status(400).json({ message: "Branch not found" });
     }
 
-    
+    const employee = await models.Employees.create({
+      ...req.body,
+    });
 
+    res.json({
+      message: "Employee created",
+      employee
+    });
   } catch (e) {
     res.status(500).json({
       message: "Bad request",
@@ -56,35 +62,23 @@ const postEmployee = async (req, res) => {
 const putEmployee = async (req, res) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, salary, rut, direction, phone, BranchId } =
-      req.body;
-
     const employee = await models.Employees.findByPk(id);
 
     if (!employee) {
       return res.status(404).json({
-        message: "User not found",
+        message: "Employee not found",
       });
     }
 
-    //----------???????--------
 
-    const verifyBranch = await models.Branchs.findByPk(Roleid);
-
-    if (!verifyBranch) {
-      return res.status(404).json({
-        message: "Branch not found",
-      });
-    }
-
-    const updateUser = await user.update({ ...req.body });
+    const updateEmployee = await employee.update({ ...req.body });
 
     res.status(200).json({
       message: "Employee update",
-      data: updateUser,
+      data: updateEmployee,
     });
 
-    //--------????-----
+
   } catch (e) {
     res.status(500).json({
       message: "Bad request",
@@ -99,15 +93,12 @@ const deleteEmployee = async (req, res) => {
 
     const employee = await models.Employees.findByPk(id);
 
-    //--------??????------
 
     if (!employee) {
       return res.status(404).json({
         message: "User not found",
       });
     }
-    //--------?????-----
-
     await employee.destroy();
 
     res.status(202).json({
