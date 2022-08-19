@@ -5,7 +5,7 @@ const getCompany = async (req, res) => {
     const companies = await models.Companies.findAll();
 
     res.status(200).json({
-      message: "Get all users",
+      message: "Get all companies",
       data: companies,
     });
   } catch (e) {
@@ -18,25 +18,20 @@ const getCompany = async (req, res) => {
 
 const postCompany = async (req, res) => {
   try {
-    const { name, direction, rut, status } = req.body;
+    const { name } = req.body;
 
-    const verifyCompany = await models.Companies.findOne({ where: { name: name } });
+    const verifyCompany = await models.Companies.findOne({
+      where: { name: name },
+    });
 
     if (verifyCompany) {
       return res.status(400).json({ message: "Company is registered" });
     }
-    //????????
-    const verifyUser = await models.Users.findByPk(RoleId);
-
-    if (!verifyUser) {
-      return res.status(400).json({ message: "User not found" });
-    }
-    /////?????
 
     const company = await models.Company.create({ ...req.body });
 
     res.json({
-      message: "User created",
+      message: "Company created",
       data: company,
     });
   } catch (e) {
@@ -50,24 +45,15 @@ const postCompany = async (req, res) => {
 const putCompany = async (req, res) => {
   try {
     const id = req.params.id;
-    const { name, direction, rut, status } = req.body;
+    const { name } = req.body;
 
     const company = await models.Companies.findByPk(id);
 
     if (!company) {
       return res.status(404).json({
-        message: "User not found",
+        message: "Company not found",
       });
     }
-    // ???????
-    const verifyUser = await models.Users.findByPk(RoleId);
-
-    if (!verifyUser) {
-      return res.status(404).json({
-        message: "User not found",
-      });
-    }
-    // ???????
 
     const updateCompany = await company.update({ ...req.body });
 

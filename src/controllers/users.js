@@ -69,7 +69,7 @@ const postUser = async (req, res) => {
 const putUser = async (req, res) => {
   try {
     const id = req.params.id;
-    const { firstName, lastName, password, image, RoleId } = req.body;
+    const { } = req.body;
 
     const user = await models.Users.findByPk(id);
 
@@ -79,14 +79,7 @@ const putUser = async (req, res) => {
       });
     }
 
-    const verifyRole = await models.Roles.findByPk(Roleid);
 
-
-    if (!verifyRole) {
-      return res.status(404).json({
-        message: "Role not found",
-      });
-    }
 
     const updateUser = await user.update({ ...req.body });
 

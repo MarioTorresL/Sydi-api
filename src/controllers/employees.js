@@ -16,7 +16,7 @@ const getEmployee = async (req, res) => {
     });
 
     res.status(200).json({
-      message: "Get all users",
+      message: "Get all employees",
       data: users,
     });
   } catch (e) {
@@ -29,37 +29,22 @@ const getEmployee = async (req, res) => {
 
 const postEmployee = async (req, res) => {
   try {
-    const { firstName, lastName, salary, rut, phone, BranchId } = req.body;
+    const {rut, BranchId } = req.body;
 
-    //----------------????????---------------------------
     const verifEmployee = await models.Users.findOne({
-      where: { name: firstName },
+      where: { rut: rut },
     });
     if (verifEmployee) {
       return res.status(400).json({ message: "Employee is registered" });
     }
 
     const verifyBranch = await models.Branchs.findByPk(BranchId);
-    if (!verifyRole) {
-      return res.status(400).json({ message: "Role not found" });
+    if (!verifyBranch) {
+      return res.status(400).json({ message: "Branch not found" });
     }
 
-    const hash = bcrypt.hashSync(password);
+    
 
-    const user = await models.Users.create({
-      ...req.body,
-      image: "noImage",
-      password: hash,
-    });
-
-    //token
-    const token = await generateJWT(user.id);
-
-    res.json({
-      message: "User created",
-      token: token,
-    });
-    // -------------------????????----------------
   } catch (e) {
     res.status(500).json({
       message: "Bad request",
