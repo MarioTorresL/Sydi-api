@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const {check} = require('express-validator');
 
 const { getAllVehicle, getOneVehicle, postVehicle, putVehicle, deleteVehicle } = require('../controllers/vehicles');
 const { validateJwt } = require('../middlewares/validateJwt');
