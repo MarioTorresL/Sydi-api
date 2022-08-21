@@ -9,11 +9,8 @@ module.exports ={
     "dialect": process.env.DB_DIALECT
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": process.env.DB_NAME,
+    "dialect": "postgres"
   },
   "production": {
     "username": "root",
