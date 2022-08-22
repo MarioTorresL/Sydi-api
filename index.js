@@ -32,8 +32,12 @@ app.use('/api/employees',require('./src/routes/employees'))
 
 
 // appListen
-app.listen( process.env.PORT , ()=>{
-  //console.log('Runing server in Port 3000')
-  console.log(`Runing server in port ${process.env.PORT}`)
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen( process.env.PORT , ()=>{
+    //console.log('Runing server in Port 3000')
+    console.log(`Runing server in port ${process.env.PORT}`)
+  });
+}
 
+
+module.exports = app;

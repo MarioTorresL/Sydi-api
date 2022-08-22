@@ -3,7 +3,6 @@ const { generateJWT } = require("../helpers/jwt");
 const bcrypt = require("bcryptjs");
 
 const models = require("../database/models/");
-const Roles = require('../database/models/role')
 
 const getUser = async (req, res) => {
   try {
@@ -19,10 +18,10 @@ const getUser = async (req, res) => {
       message: "Get all users",
       data: users,
     });
-  } catch (e) {
+  } catch (err) {
     res.status(500).json({
       message: "Bad Request",
-      error: e,
+      error: err,
     });
   }
 };
@@ -58,10 +57,10 @@ const postUser = async (req, res) => {
       message: "User created",
       token: token,
     });
-  } catch (e) {
+  } catch (err) {
     res.status(500).json({
       message: "Bad request",
-      error: e,
+      error: err,
     });
   }
 };
@@ -86,10 +85,10 @@ const putUser = async (req, res) => {
       message: "User update",
       data: updateUser,
     });
-  } catch (e) {
+  } catch (err) {
     res.status(500).json({
       message: "Bad request",
-      error: e,
+      error: err,
     });
   }
 };
@@ -108,13 +107,13 @@ const deleteUser = async (req, res) => {
 
     await user.destroy();
 
-    res.status(202).json({
+    res.status(204).json({
       message: "User removed",
     });
-  } catch (e) {
+  } catch (err) {
     res.status(500).json({
       message: "Bad request",
-      error: e,
+      error: err,
     });
   }
 };

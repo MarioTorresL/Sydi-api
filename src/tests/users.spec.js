@@ -1,8 +1,12 @@
+const request = require('supertest');
+const app = require('../../index');
 
+describe('User Endpoints', () => {
 
+  it("should get all users", async () => {
+    const res = await request(app)
+      .get("/api/users/")
+      .expect(200)
+  });
 
-describe('Initial Test', () => {
-  it('should test that 1 + 1 === 2', () => {
-    expect(1+1).toBe(2)
   })
-})
