@@ -9,4 +9,20 @@ describe('User Endpoints', () => {
       .expect(200)
   });
 
+  it('should create a new user', async () => {
+    const res = await request(app)
+      .post('/api/users')
+      .send({
+        "firstName": "test",
+        "lastName": "is cool",
+        "email": "coolTest@gmail.com",
+        "password": "1234",
+        "image": "no-image",
+        "RoleId": 1
+      })
+    expect(res.statusCode).toEqual(201)
+  })
+
+
+
   })

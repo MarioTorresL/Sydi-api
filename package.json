@@ -8,7 +8,7 @@
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run db:migrate",
     "db:seed": "npx sequelize-cli db:seed:all",
-    "start:test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
+    "start:test": "npm run db:migrate:reset && npm run db:seed && jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "author": "Ing-Team",
   "license": "ISC",

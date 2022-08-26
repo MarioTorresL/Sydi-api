@@ -29,9 +29,8 @@ const getUser = async (req, res) => {
 const postUser = async (req, res) => {
   try {
   
-    const { email, image, RoleId } = req.body;
+    const { email, password, RoleId } = req.body;
 
-    console.log(req.body)
     const verifyUser = await models.Users.findOne({ where: { email: email } });
 
     if (verifyUser) {
@@ -53,11 +52,12 @@ const postUser = async (req, res) => {
     //token
     const token = await generateJWT(user.id);
 
-    res.json({
+    res.status(201).json({
       message: "User created",
       token: token,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json({
       message: "Bad request",
       error: err,
