@@ -3,6 +3,7 @@ const router = require('express').Router();
 const { getAllVehicle, getOneVehicle, postVehicle, putVehicle, deleteVehicle } = require('../controllers/vehicles');
 const { validateJwt } = require('../middlewares/validateJwt');
 const { validateParams } = require('../middlewares/validateParams');
+const { check } = require('express-validator');
 
 //=== route: /api/vehicles ===
 

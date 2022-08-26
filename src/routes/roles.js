@@ -3,6 +3,7 @@ const router = require('express').Router();
 const { getRole, postRole, putRole, deleteRole } = require('../controllers/roles')
 const { validateJwt } =require('../middlewares/validateJwt');
 const { validateParams } = require('../middlewares/validateParams');
+const { check } = require('express-validator');
 
 // ===route: /api/roles ===
 

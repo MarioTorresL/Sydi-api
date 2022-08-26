@@ -29,7 +29,8 @@ app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/companies', require('./src/routes/companies'));
 app.use('/api/branchs', require('./src/routes/branchs'));
 app.use('/api/vehicles', require('./src/routes/vehicles'));
-app.use('/api/employees',require('./src/routes/employees'))
+app.use('/api/employees',require('./src/routes/employees'));
+app.use('/api/bills',require('./src/routes/bills'));
 
 
 // appListen

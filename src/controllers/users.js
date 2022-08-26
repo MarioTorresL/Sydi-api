@@ -3,7 +3,7 @@ const { generateJWT } = require("../helpers/jwt");
 const bcrypt = require("bcryptjs");
 
 const models = require("../database/models/");
-const Roles = require('../database/models/role')
+const Roles = require('../database/models/role');
 
 const getUser = async (req, res) => {
   try {
