@@ -7,7 +7,7 @@ const { validateParams } = require('../middlewares/validateParams');
 
 // ===route: /api/users ===
 
-router.get('/',validateJwt, getUser);
+router.get('/', getUser);
 
 router.post('/',
 	[
