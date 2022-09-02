@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const {check} = require('express-validator');
 
 const { getUser, postUser, putUser, deleteUser } = require('../controllers/users');
 const { validateJwt } = require('../middlewares/validateJwt');
@@ -7,7 +8,7 @@ const { check } = require('express-validator');
 
 // ===route: /api/users ===
 
-router.get('/',validateJwt, getUser);
+router.get('/', getUser);
 
 router.post('/',
 	[

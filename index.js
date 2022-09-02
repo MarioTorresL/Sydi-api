@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const morgan = require('morgan');
+const logger = require('morgan');
 const responseTime = require('response-time')
 require('dotenv').config();
 
@@ -16,8 +16,7 @@ app.use(cors())
 app.use(bodyParser.json({type:'application/json'}))
 
 // logging developer
-morgan('dev')
-
+app.use(logger('dev'))
 
 // middlewere for time response
 responseTime()
@@ -34,8 +33,12 @@ app.use('/api/bills',require('./src/routes/bills'));
 
 
 // appListen
-app.listen( process.env.PORT , ()=>{
-  //console.log('Runing server in Port 3000')
-  console.log(`Runing server in port ${process.env.PORT}`)
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen( process.env.PORT , ()=>{
+    //console.log('Runing server in Port 3000')
+    console.log(`Runing server in port ${process.env.PORT}`)
+  });
+}
 
+
+module.exports = app;

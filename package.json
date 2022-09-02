@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js",
-    "sequelize db:migrate": "npx sequelize-cli db:migrate",
-    "sequelize db:migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "sequelize db:run:seed": "npx sequelize-cli db:seed:all",
-    "sequelize db:seed:undo": "npx sequelize-cli db:seed:undo",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run db:migrate",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "start:test": "npm run db:migrate:reset && npm run db:seed && jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "author": "Ing-Team",
   "license": "ISC",
@@ -29,6 +28,8 @@
     "sequelize": "^6.21.3"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.4.1"
+    "jest": "^28.1.3",
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.4"
   }
 }

@@ -28,9 +28,9 @@ const postRole = async (req,res) => {
 
     const role = await models.Roles.create({name:name});
 
-    res.send({
+    res.status(201).send({
       message: 'Role created',
-      data:role
+      data:{id: role.id, name: role.name}
     });
 
   }catch(e){

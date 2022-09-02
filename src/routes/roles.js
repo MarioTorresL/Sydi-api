@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const {check} = require('express-validator');
 
 const { getRole, postRole, putRole, deleteRole } = require('../controllers/roles')
 const { validateJwt } =require('../middlewares/validateJwt');
