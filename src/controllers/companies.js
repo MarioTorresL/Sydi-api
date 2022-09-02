@@ -76,7 +76,7 @@ const deleteCompany = async (req, res) => {
 
     if (!company) {
       return res.status(404).json({
-        message: "company not found",
+        message: "Company not found",
       });
     }
 

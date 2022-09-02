@@ -4,6 +4,7 @@ const {check} = require('express-validator');
 const { getUser, postUser, putUser, deleteUser } = require('../controllers/users');
 const { validateJwt } = require('../middlewares/validateJwt');
 const { validateParams } = require('../middlewares/validateParams');
+const { check } = require('express-validator');
 
 // ===route: /api/users ===
 
