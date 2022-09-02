@@ -4,7 +4,6 @@ const {check} = require('express-validator');
 const { getRole, postRole, putRole, deleteRole } = require('../controllers/roles')
 const { validateJwt } =require('../middlewares/validateJwt');
 const { validateParams } = require('../middlewares/validateParams');
-const { check } = require('express-validator');
 
 // ===route: /api/roles ===
 

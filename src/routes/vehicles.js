@@ -4,7 +4,6 @@ const {check} = require('express-validator');
 const { getAllVehicle, getOneVehicle, postVehicle, putVehicle, deleteVehicle } = require('../controllers/vehicles');
 const { validateJwt } = require('../middlewares/validateJwt');
 const { validateParams } = require('../middlewares/validateParams');
-const { check } = require('express-validator');
 
 //=== route: /api/vehicles ===
 
